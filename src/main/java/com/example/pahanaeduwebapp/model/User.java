@@ -4,7 +4,7 @@ package com.example.pahanaeduwebapp.model;
 //OOP: Encapsulation (hiding internal data (fields) and controlling access).
 
 public class User {
-    private String username;
+    private String email;
     private String password;
     private String role;      // Either "admin" or "staff"
     private String fullName;
@@ -15,8 +15,8 @@ public class User {
         // Default constructor for MongoDB deserialization or form mapping
     }
 
-    public User(String username, String password, String role, String fullName, String phone) {
-        this.username = username;
+    public User(String email, String password, String role, String fullName, String phone) {
+        this.email = email;
         this.password = password;
         this.role = role;
         this.fullName = fullName;
@@ -24,12 +24,12 @@ public class User {
     }
 
     // --- Getters & Setters ---
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -69,7 +69,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", fullName='" + fullName + '\'' +
                 '}';
