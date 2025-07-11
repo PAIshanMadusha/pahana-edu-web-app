@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap-icons/bootstrap-icons.css">
 
 <!-- Sticky Top Navbar with Dark Theme -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364);">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm py-3" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364);">
     <div class="container-fluid px-4">
         <!-- Brand -->
         <a class="navbar-brand fw-bold"><i class="bi bi-book me-2"></i>Pahana Education Bookshop</a>
@@ -22,14 +22,14 @@
             <ul class="navbar-nav">
                 <c:if test="${not empty sessionScope.user}">
                     <li class="nav-item">
-                        <span class="nav-link text-white" style="text-shadow: 1px 1px 2px rgba(255,255,255,0.1);">
+                        <span class="nav-link text-white fw-bold">
                             Welcome, ${sessionScope.user.fullName}
                             (<span class="text-info">${sessionScope.user.role}</span>)
                         </span>
                     </li>
                     <li class="nav-item d-flex align-items-center">
                         <a href="${pageContext.request.contextPath}/logout"
-                           class="btn btn-sm btn-danger ms-2">
+                           class="btn btn-danger ms-2">
                             Logout
                         </a>
                     </li>

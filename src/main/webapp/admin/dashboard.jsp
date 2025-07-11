@@ -10,9 +10,6 @@
         return;
     }
 %>
-
-<%@ include file="/components/header.jsp" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,13 +17,19 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 </head>
-<body class="p-5 bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
 
-<div class="container mt-5">
-    <h2 class="mb-4">Admin Dashboard</h2>
-    <p>This is the admin dashboard. You can manage users, items, and billing here.</p>
-</div>
-<!-- Bootstrap JS to enable toggle button -->
-<script src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Reusable Header -->
+<%@ include file="/components/header.jsp" %>
+
+<main class="flex-grow-1">
+    <div class="container mt-5">
+        <h2 class="mb-4">Admin Dashboard</h2>
+        <p>This is the admin dashboard. You can manage users, items, and billing here.</p>
+    </div>
+</main>
+
+<!-- Reusable Footer -->
+<%@ include file="/components/footer.jsp" %>
 </body>
 </html>
