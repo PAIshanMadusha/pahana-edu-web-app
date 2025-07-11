@@ -2,6 +2,7 @@ package com.example.pahanaeduwebapp.servlet;
 
 import com.example.pahanaeduwebapp.dao.UserDAO;
 import com.example.pahanaeduwebapp.model.User;
+import com.example.pahanaeduwebapp.util.DatabaseInitializer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,9 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // 1️⃣ Ensure admin exists!
+        DatabaseInitializer.ensureAdminExists();
 
         // 🔐 Get credentials from form
         String email = request.getParameter("email");
