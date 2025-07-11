@@ -10,6 +10,9 @@
         return;
     }
 %>
+
+<%@ include file="/components/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +20,13 @@
     <title>Staff Dashboard</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 </head>
-<body class="p-5">
-<div class="container">
-    <h2>Welcome, Staff: ${user.fullName}</h2>
-    <p>This is the staff dashboard.</p>
-    <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger">Logout</a>
+<body class="p-5 bg-light">
+
+<div class="container mt-5">
+    <h2 class="mb-4">Staff Dashboard</h2>
+    <p>This is the staff dashboard. You can manage items, and billing here.</p>
 </div>
+<!-- Bootstrap JS to enable toggle button -->
+<script src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
