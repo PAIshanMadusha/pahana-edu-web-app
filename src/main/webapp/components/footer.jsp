@@ -1,5 +1,6 @@
 <!-- Reusable Footer -->
-<footer class="text-white text-center py-3 mt-auto" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364);" >
+<footer class="text-white text-center py-2 mt-auto"
+        style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364);">
     <div class="container">
         <small>
             &copy; 2025 Pahana Education Bookshop |
@@ -13,3 +14,6 @@
 
 <!-- Bootstrap JS -->
 <script src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Sidebar Toggle JS -->
+<script src="${pageContext.request.contextPath}/assets/js/sidebar-toggle.js"></script>
