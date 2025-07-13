@@ -53,12 +53,18 @@
                     <td class="text-capitalize">${u.role}</td>
                     <td>${u.phone}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/admin/users/edit?email=${u.email}" class="btn btn-sm btn-primary">
-                            Edit
-                        </a>
-                        <a href="${pageContext.request.contextPath}/admin/users/delete?email=${u.email}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">
-                            Delete
-                        </a>
+                        <div class="d-flex align-items-center">
+                            <a href="${pageContext.request.contextPath}/admin/users/edit?email=${u.email}" class="btn btn-sm btn-primary" style="width:70px;">
+                                Edit
+                            </a>
+
+                            <!-- Divider -->
+                            <span style="width:1px; height:24px; background-color:#ccc; margin: 0 8px;"></span>
+
+                            <a href="${pageContext.request.contextPath}/admin/users/delete?email=${u.email}" class="btn btn-sm btn-danger" style="width:70px;" onclick="return confirm('Are you sure you want to delete this user?');">
+                                Delete
+                            </a>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

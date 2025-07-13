@@ -5,6 +5,8 @@ import com.example.pahanaeduwebapp.util.MongoDBConnection;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * DAO class for handling user-related database operations.
@@ -42,6 +44,24 @@ public class UserDAO {
         }
 
         return null; // Invalid credentials
+    }
+
+    //Get All Users
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+
+        for (Document doc : userCollection.find()) {
+            User u = new User(
+                    doc.getString("email"),
+                    doc.getString("password"),
+                    doc.getString("role"),
+                    doc.getString("fullName"),
+                    doc.getString("phone")
+            );
+            users.add(u);
+        }
+
+        return users;
     }
 
     // Optional: Add user, find by email, etc. (for admin control panel)
