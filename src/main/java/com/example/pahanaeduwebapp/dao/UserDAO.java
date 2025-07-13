@@ -46,6 +46,17 @@ public class UserDAO {
         return null; // Invalid credentials
     }
 
+    //Add User
+    public void addUser(User user) {
+        Document doc = new Document("email", user.getEmail())
+                .append("password", user.getPassword()) // Should be hashed in production
+                .append("role", user.getRole())
+                .append("fullName", user.getFullName())
+                .append("phone", user.getPhone());
+
+        userCollection.insertOne(doc);
+    }
+
     //Get All Users
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
@@ -64,5 +75,38 @@ public class UserDAO {
         return users;
     }
 
-    // Optional: Add user, find by email, etc. (for admin control panel)
+    // Find a single user by email
+    public User findUserByEmail(String email) {
+        Document query = new Document("email", email);
+        Document result = userCollection.find(query).first();
+
+        if (result != null) {
+            return new User(
+                    result.getString("email"),
+                    result.getString("password"),
+                    result.getString("role"),
+                    result.getString("fullName"),
+                    result.getString("phone")
+            );
+        }
+        return null;
+    }
+
+    // Update User Info
+    public void updateUser(User updatedUser) {
+        Document query = new Document("email", updatedUser.getEmail());
+
+        Document update = new Document("$set", new Document()
+                .append("fullName", updatedUser.getFullName())
+                .append("role", updatedUser.getRole())
+                .append("phone", updatedUser.getPhone()));
+
+        userCollection.updateOne(query, update);
+    }
+
+    // Delete a user by email
+    public boolean deleteUserByEmail(String email) {
+        Document query = new Document("email", email);
+        return userCollection.deleteOne(query).getDeletedCount() > 0;
+    }
 }

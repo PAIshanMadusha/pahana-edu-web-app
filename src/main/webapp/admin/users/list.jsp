@@ -24,7 +24,7 @@
 <%@ include file="/components/sidebar.jsp" %>
 
 <main class="flex-grow-1 p-4">
-    <div class="container mt-4">
+    <div class="container mt-2">
         <h2 class="mb-4">Manage Users</h2>
 
         <!-- Add User Button -->
@@ -33,6 +33,22 @@
                 <i class="bi bi-plus-circle me-1"></i> Add New User
             </a>
         </div>
+
+        <c:if test="${not empty sessionScope.successMessage}">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    ${sessionScope.successMessage}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <c:remove var="successMessage" scope="session" />
+        </c:if>
+
+        <c:if test="${not empty sessionScope.errorMessage}">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    ${sessionScope.errorMessage}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <c:remove var="errorMessage" scope="session" />
+        </c:if>
 
         <!-- Users Table -->
         <table class="table table-bordered table-hover table-striped">
@@ -80,4 +96,6 @@
 
 <%@ include file="/components/footer.jsp" %>
 </body>
+<!-- Bootstrap JS Bundle (required for alert dismissing) -->
+<script src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>
