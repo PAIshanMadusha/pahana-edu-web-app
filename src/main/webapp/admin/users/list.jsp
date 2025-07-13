@@ -1,0 +1,77 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="true" %>
+<%
+    com.example.pahanaeduwebapp.model.User user =
+            (com.example.pahanaeduwebapp.model.User) session.getAttribute("user");
+
+    if (user == null || !"admin".equalsIgnoreCase(user.getRole())) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        return;
+    }
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
+</head>
+<body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
+
+<!-- Reusable Components -->
+<%@ include file="/components/header.jsp" %>
+<%@ include file="/components/sidebar.jsp" %>
+
+<main class="flex-grow-1 p-4">
+    <div class="container mt-4">
+        <h2 class="mb-4">Manage Users</h2>
+
+        <!-- Add User Button -->
+        <div class="mb-3">
+            <a href="${pageContext.request.contextPath}/admin/users/add.jsp" class="btn btn-success">
+                <i class="bi bi-plus-circle me-1"></i> Add New User
+            </a>
+        </div>
+
+        <!-- Users Table -->
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>Email</th>
+                <th>Full Name</th>
+                <th>Role</th>
+                <th>Phone</th>
+                <th style="width: 150px;">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="u" items="${userList}">
+                <tr>
+                    <td>${u.email}</td>
+                    <td>${u.fullName}</td>
+                    <td class="text-capitalize">${u.role}</td>
+                    <td>${u.phone}</td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/admin/users/edit?email=${u.email}" class="btn btn-sm btn-primary">
+                            Edit
+                        </a>
+                        <a href="${pageContext.request.contextPath}/admin/users/delete?email=${u.email}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            <c:if test="${empty userList}">
+                <tr>
+                    <td colspan="5" class="text-center text-muted">No users found.</td>
+                </tr>
+            </c:if>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<%@ include file="/components/footer.jsp" %>
+</body>
+</html>
