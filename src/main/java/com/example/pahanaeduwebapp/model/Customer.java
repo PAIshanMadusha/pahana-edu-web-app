@@ -1,0 +1,80 @@
+package com.example.pahanaeduwebapp.model;
+
+/**
+ * Represents a customer who purchases books from the shop.
+ * OOP: Encapsulation (fields + accessors), ready for Inheritance if needed.
+ */
+public class Customer {
+
+    private String email;
+    private String fullName;
+    private String phone;
+    private String address;
+    private String registeredDate; // Can be stored as a string or Date based on MongoDB format
+
+    // Default constructor (needed for MongoDB deserialization or form mapping)
+    public Customer() {}
+
+    // Constructor with all fields
+    public Customer(String email, String fullName, String phone, String address, String registeredDate) {
+        this.email = email;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.address = address;
+        this.registeredDate = registeredDate;
+    }
+
+    // --- Getters & Setters ---
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getRegisteredDate() {
+        return registeredDate;
+    }
+
+    public void setRegisteredDate(String registeredDate) {
+        this.registeredDate = registeredDate;
+    }
+
+    // Optional: toString for debugging
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", registeredDate='" + registeredDate + '\'' +
+                '}';
+    }
+}
