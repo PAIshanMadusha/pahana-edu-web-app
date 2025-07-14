@@ -7,8 +7,8 @@ package com.example.pahanaeduwebapp.model;
 public class Customer {
 
     private String accountNumber;
-    private String email;
     private String fullName;
+    private String email;
     private String phone;
     private String address;
     private String registeredDate; // Can be stored as a string or Date based on MongoDB format
@@ -17,10 +17,10 @@ public class Customer {
     public Customer() {}
 
     // Constructor with all fields
-    public Customer(String accountNumber, String email, String fullName, String phone, String address, String registeredDate) {
+    public Customer(String accountNumber, String fullName, String email, String phone, String address, String registeredDate) {
         this.accountNumber = accountNumber;
-        this.email = email;
         this.fullName = fullName;
+        this.email = email;
         this.phone = phone;
         this.address = address;
         this.registeredDate = registeredDate;
@@ -36,20 +36,20 @@ public class Customer {
         this.accountNumber = accountNumber;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getFullName() {
         return fullName;
     }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhone() {
@@ -81,8 +81,8 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "accountNumber='" + accountNumber + '\'' +
-                "email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", registeredDate='" + registeredDate + '\'' +
