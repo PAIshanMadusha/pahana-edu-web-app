@@ -26,7 +26,6 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-4">
-        <div class="card shadow-lg rounded-4 border-0">
             <div class="card-body p-5">
                 <h2 class="mb-4 text-primary"><i class="bi bi-person-plus-fill me-2"></i>Add New Customer</h2>
 
@@ -69,7 +68,7 @@
                     </div>
 
                     <div class="col-12 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success px-4 me-2">
+                        <button type="submit" class="btn btn-primary px-4 me-2">
                             <i class="bi bi-save me-2"></i>Add Customer
                         </button>
                         <a href="${pageContext.request.contextPath}/staff/customers" class="btn btn-secondary px-4">Cancel</a>
@@ -77,7 +76,6 @@
                 </form>
             </div>
         </div>
-    </div>
 </main>
 
 <%@ include file="/components/footer.jsp" %>

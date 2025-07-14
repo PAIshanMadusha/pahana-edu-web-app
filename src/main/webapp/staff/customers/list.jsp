@@ -55,7 +55,7 @@
         <table class="table table-bordered table-striped table-hover">
             <thead class="table-dark">
             <tr>
-                <th>Account #</th>
+                <th>Account#</th>
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Phone</th>
