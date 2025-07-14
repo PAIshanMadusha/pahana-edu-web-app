@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="true" %>
 
 <%
@@ -64,7 +65,7 @@
                 <tr>
                     <td>${item.name}</td>
                     <td>${item.category}</td>
-                    <td>${item.price}</td>
+                    <td>Rs. <fmt:formatNumber value="${item.price}" type="number" minFractionDigits="2" /></td>
                     <td>${item.quantity}</td>
                     <td>
                         <img src="${item.imageUrl}" alt="Image" width="50" height="50"
@@ -72,12 +73,12 @@
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <a href="${pageContext.request.contextPath}/admin/items/edit?id=${item.itemId}"
+                            <a href="${pageContext.request.contextPath}/admin/items/edit?itemId=${item.itemId}"
                                class="btn btn-sm btn-primary" style="width: 70px;">Edit</a>
 
                             <span style="width: 1px; height: 24px; background-color: #ccc; margin: 0 8px;"></span>
 
-                            <a href="${pageContext.request.contextPath}/admin/items/delete?id=${item.itemId}"
+                            <a href="${pageContext.request.contextPath}/admin/items/delete?itemId=${item.itemId}"
                                class="btn btn-sm btn-danger" style="width: 70px;"
                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                         </div>
