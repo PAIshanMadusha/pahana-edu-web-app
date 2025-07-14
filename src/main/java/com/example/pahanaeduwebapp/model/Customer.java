@@ -6,6 +6,7 @@ package com.example.pahanaeduwebapp.model;
  */
 public class Customer {
 
+    private String accountNumber;
     private String email;
     private String fullName;
     private String phone;
@@ -16,7 +17,8 @@ public class Customer {
     public Customer() {}
 
     // Constructor with all fields
-    public Customer(String email, String fullName, String phone, String address, String registeredDate) {
+    public Customer(String accountNumber, String email, String fullName, String phone, String address, String registeredDate) {
+        this.accountNumber = accountNumber;
         this.email = email;
         this.fullName = fullName;
         this.phone = phone;
@@ -25,6 +27,14 @@ public class Customer {
     }
 
     // --- Getters & Setters ---
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
     public String getEmail() {
         return email;
@@ -70,6 +80,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
+                "accountNumber='" + accountNumber + '\'' +
                 "email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", phone='" + phone + '\'' +
