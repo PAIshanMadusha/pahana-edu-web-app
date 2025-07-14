@@ -78,7 +78,7 @@
 
                             <span style="width: 1px; height: 24px; background-color: #ccc; margin: 0 8px;"></span>
 
-                            <a href="${pageContext.request.contextPath}/admin/items/delete?id=${item.itemId}"
+                            <a href="${pageContext.request.contextPath}/admin/items/delete?itemId=${item.itemId}"
                                class="btn btn-sm btn-danger" style="width: 70px;"
                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                         </div>
