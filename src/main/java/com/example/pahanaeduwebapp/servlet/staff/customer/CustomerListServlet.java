@@ -26,9 +26,17 @@ public class CustomerListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Customer> customerList = customerDAO.getAllCustomers();
-        request.setAttribute("customerList", customerList);
+        String search = request.getParameter("search");
 
+        List<Customer> customerList;
+        if (search != null && !search.trim().isEmpty()) {
+            customerList = customerDAO.searchCustomers(search.trim());
+            request.setAttribute("searchQuery", search.trim());
+        } else {
+            customerList = customerDAO.getAllCustomers();
+        }
+
+        request.setAttribute("customerList", customerList);
         request.getRequestDispatcher("/staff/customers/list.jsp").forward(request, response);
     }
 }

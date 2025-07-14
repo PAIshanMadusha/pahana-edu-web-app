@@ -31,11 +31,15 @@
     <div class="container mt-2">
         <h2 class="mb-4">Customer List</h2>
 
-        <!-- Add Button -->
-        <div class="mb-3">
-            <a href="${pageContext.request.contextPath}/staff/customers/add.jsp" class="btn btn-success">
-                <i class="bi bi-plus-circle me-1"></i> Add Customer
-            </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <form method="get" action="${pageContext.request.contextPath}/staff/customers" class="d-flex">
+                <input type="text" name="search" class="form-control form-control-sm me-2"
+                       placeholder="Search by name, email or account number"
+                       value="${searchQuery != null ? searchQuery : ''}" style="max-width: 250px;"/>
+                <button class="btn btn-primary btn-sm d-flex align-items-center" type="submit">
+                    <i class="bi bi-search me-1"></i> Search
+                </button>
+            </form>
         </div>
 
         <!-- Success Message -->

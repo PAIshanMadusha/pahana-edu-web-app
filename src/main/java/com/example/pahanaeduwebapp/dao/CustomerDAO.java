@@ -6,6 +6,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import com.mongodb.client.model.Filters;
+import org.bson.conversions.Bson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,5 +92,29 @@ public class CustomerDAO {
     public void deleteCustomer(String accountNumber) {
         Document query = new Document("accountNumber", accountNumber);
         customerCollection.deleteOne(query);
+    }
+
+    // Search customers by name/email/accountNumber (case-insensitive)
+    public List<Customer> searchCustomers(String keyword) {
+        List<Customer> customers = new ArrayList<>();
+
+        Bson regexFilter = Filters.or(
+                Filters.regex("fullName", keyword, "i"),
+                Filters.regex("email", keyword, "i"),
+                Filters.regex("accountNumber", keyword, "i")
+        );
+
+        for (Document doc : customerCollection.find(regexFilter)) {
+            Customer c = new Customer(
+                    doc.getString("accountNumber"),
+                    doc.getString("fullName"),
+                    doc.getString("email"),
+                    doc.getString("phone"),
+                    doc.getString("address"),
+                    doc.getString("registeredDate")
+            );
+            customers.add(c);
+        }
+        return customers;
     }
 }
