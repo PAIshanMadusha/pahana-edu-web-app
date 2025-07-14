@@ -82,10 +82,10 @@
             </li>
 
             <li>
-                <a href="${pageContext.request.contextPath}/staff/customers/register"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/customers/register") ? "active" : "" %>">
+                <a href="${pageContext.request.contextPath}/staff/customers/add"
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/customers/add") ? "active" : "" %>">
                     <i class="bi bi-person-plus me-2"></i>
-                    <span class="sidebar-text">Register Customer</span>
+                    <span class="sidebar-text">Add Customer</span>
                 </a>
             </li>
             <li>
