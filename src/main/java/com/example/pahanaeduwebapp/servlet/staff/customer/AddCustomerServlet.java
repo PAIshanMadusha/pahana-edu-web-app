@@ -42,7 +42,7 @@ public class AddCustomerServlet extends HttpServlet {
         String registeredDate = LocalDate.now().toString();
 
         // Create customer object
-        Customer customer = new Customer(accountNumber, email, fullName, phone, address, registeredDate);
+        Customer customer = new Customer(accountNumber, fullName, email, phone, address, registeredDate);
 
         // Save to DB
         customerDAO.addCustomer(customer);

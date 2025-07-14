@@ -26,7 +26,7 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-4">
-            <div class="card-body p-5">
+            <div class="card-body p-2">
                 <h2 class="mb-4 text-primary"><i class="bi bi-person-plus-fill me-2"></i>Add New Customer</h2>
 
                 <form method="post" action="${pageContext.request.contextPath}/staff/customers/add" class="row g-4 needs-validation" novalidate>

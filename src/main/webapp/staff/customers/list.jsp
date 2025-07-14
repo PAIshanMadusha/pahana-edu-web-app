@@ -36,7 +36,7 @@
                 <input type="text" name="search" class="form-control form-control-sm me-2"
                        placeholder="Search by name, email or account number"
                        value="${searchQuery != null ? searchQuery : ''}" style="max-width: 250px;"/>
-                <button class="btn btn-primary btn-sm d-flex align-items-center" type="submit">
+                <button class="btn btn-success btn-sm d-flex align-items-center" type="submit">
                     <i class="bi bi-search me-1"></i> Search
                 </button>
             </form>

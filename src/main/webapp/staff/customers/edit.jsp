@@ -54,7 +54,7 @@
                 <div class="invalid-feedback">Address is required.</div>
             </div>
 
-            <button type="submit" class="btn btn-success"><i class="bi bi-save me-2"></i>Update Customer</button>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-save me-2"></i>Update Customer</button>
             <a href="${pageContext.request.contextPath}/staff/customers" class="btn btn-secondary ms-2">Cancel</a>
         </form>
     </div>
