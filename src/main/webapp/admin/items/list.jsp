@@ -73,7 +73,7 @@
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <a href="${pageContext.request.contextPath}/admin/items/edit?id=${item.itemId}"
+                            <a href="${pageContext.request.contextPath}/admin/items/edit?itemId=${item.itemId}"
                                class="btn btn-sm btn-primary" style="width: 70px;">Edit</a>
 
                             <span style="width: 1px; height: 24px; background-color: #ccc; margin: 0 8px;"></span>
