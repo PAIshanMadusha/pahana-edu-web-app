@@ -82,19 +82,21 @@
             </li>
 
             <li>
-                <a href="${pageContext.request.contextPath}/staff/customers/register"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/customers/register") ? "active" : "" %>">
+                <a href="${pageContext.request.contextPath}/staff/customers/add"
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/customers/add") ? "active" : "" %>">
                     <i class="bi bi-person-plus me-2"></i>
-                    <span class="sidebar-text">Register Customer</span>
+                    <span class="sidebar-text">Add Customer</span>
                 </a>
             </li>
+
             <li>
                 <a href="${pageContext.request.contextPath}/staff/customers"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/customers") ? "active" : "" %>">
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/customers") && !currentPath.contains("/staff/customers/add") ? "active" : "" %>">
                     <i class="bi bi-search me-2"></i>
                     <span class="sidebar-text">View Customers</span>
                 </a>
             </li>
+
             <li>
                 <a href="${pageContext.request.contextPath}/staff/items"
                    class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/items") ? "active" : "" %>">
