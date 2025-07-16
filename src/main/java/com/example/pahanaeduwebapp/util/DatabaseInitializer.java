@@ -24,7 +24,7 @@ public class DatabaseInitializer {
         if (adminCount == 0) {
             // Default admin details
             Document defaultAdmin = new Document("email", "admin@pahana.com")
-                    .append("password", "admin123") // ⚠️ For production, use hashed passwords
+                    .append("password", "admin123") //For production, use hashed passwords
                     .append("role", "admin")
                     .append("fullName", "Default Admin")
                     .append("phone", "0700000000");

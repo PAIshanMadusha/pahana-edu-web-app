@@ -96,4 +96,10 @@ public class BillDAO implements BillRepository {
         bill.setItems(items);
         return bill;
     }
+
+    //Delete a Bill
+    @Override
+    public void deleteBillById(String billId) {
+        billCollection.deleteOne(new Document("_id", new ObjectId(billId)));
+    }
 }

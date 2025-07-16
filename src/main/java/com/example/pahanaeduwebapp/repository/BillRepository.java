@@ -16,4 +16,7 @@ public interface BillRepository {
 
     // Retrieve a bill by its ID
     Bill getBillById(String billId);
+
+    // Delete a bill by its ID
+    void deleteBillById(String billId);
 }
