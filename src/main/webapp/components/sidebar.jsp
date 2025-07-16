@@ -105,8 +105,8 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/staff/billing"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/billing") ? "active" : "" %>">
+                <a href="${pageContext.request.contextPath}/staff/billing/generate"
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/billing/generate") ? "active" : "" %>">
                     <i class="bi bi-calculator me-2"></i>
                     <span class="sidebar-text">Generate Bill</span>
                 </a>
