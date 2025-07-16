@@ -1,4 +1,4 @@
-package com.example.pahanaeduwebapp.servlet.admin;
+package com.example.pahanaeduwebapp.servlet.admin.user;
 
 import com.example.pahanaeduwebapp.dao.UserDAO;
 import com.example.pahanaeduwebapp.model.User;

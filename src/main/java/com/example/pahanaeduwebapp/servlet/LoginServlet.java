@@ -22,22 +22,22 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1️⃣ Ensure admin exists!
+        //Ensure admin exists!
         DatabaseInitializer.ensureAdminExists();
 
-        // 🔐 Get credentials from form
+        //Get credentials from form
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // ✅ Validate credentials using DAO
+        //Validate credentials using DAO
         User user = userDAO.validateLogin(email, password);
 
         if (user != null) {
-            // ✅ Create session & store user
+            //Create session & store user
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            // 🎯 Redirect based on user role
+            //Redirect based on user role
             String role = user.getRole();
 
             if ("admin".equalsIgnoreCase(role)) {
@@ -45,13 +45,13 @@ public class LoginServlet extends HttpServlet {
             } else if ("staff".equalsIgnoreCase(role)) {
                 response.sendRedirect("staff/dashboard.jsp");
             } else {
-                // 🚫 Unknown role - optional fallback
+                //Unknown role - optional fallback
                 request.setAttribute("error", "Unauthorized role.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
 
         } else {
-            // ❌ Login failed
+            //Login failed
             request.setAttribute("error", "Invalid email or password!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
