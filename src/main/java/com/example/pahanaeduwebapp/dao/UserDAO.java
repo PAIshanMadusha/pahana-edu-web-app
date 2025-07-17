@@ -1,6 +1,6 @@
 package com.example.pahanaeduwebapp.dao;
 
-import com.example.pahanaeduwebapp.model.User;
+import com.example.pahanaeduwebapp.model.*;
 import com.example.pahanaeduwebapp.util.MongoDBConnection;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -9,90 +9,77 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * DAO class for handling user-related database operations.
- * Connects to MongoDB and validates login credentials.
+ * DAO class for User-related MongoDB operations.
+ * Polymorphism: Returns User type, but actual object can be Admin or Staff.
+ * Abstraction: Hides DB logic from higher-level logic (like servlets).
  */
 public class UserDAO {
-
     private final MongoDatabase database;
     private final MongoCollection<Document> userCollection;
 
     public UserDAO() {
-
-        // Initialize the database connection and users collection
         database = MongoDBConnection.getDatabase();
         userCollection = database.getCollection("users");
     }
 
-    //Validates login by checking email and password from the database.
+    /**
+     * Validates login and returns appropriate subclass (Admin or Staff).
+     */
     public User validateLogin(String email, String password) {
-        Document query = new Document("email", email)
-                .append("password", password); // TODO: hash in future
-
+        Document query = new Document("email", email).append("password", password);
         Document result = userCollection.find(query).first();
 
         if (result != null) {
-
-            // Create and return a User object from the result
-            return new User(
-                    result.getString("email"),
-                    result.getString("password"),
-                    result.getString("role"),
-                    result.getString("fullName"),
-                    result.getString("phone")
-            );
+            String role = result.getString("role");
+            return createUserFromDocument(role, result); // Polymorphism used
         }
-
-        return null; // Invalid credentials
+        return null;
     }
 
-    //Add User
+    // Factory-style method: creates correct subclass based on role
+    private User createUserFromDocument(String role, Document doc) {
+        String email = doc.getString("email");
+        String password = doc.getString("password");
+        String fullName = doc.getString("fullName");
+        String phone = doc.getString("phone");
+
+        if ("admin".equalsIgnoreCase(role)) {
+            return new Admin(email, password, fullName, phone);
+        } else {
+            return new Staff(email, password, fullName, phone);
+        }
+    }
+
     public void addUser(User user) {
         Document doc = new Document("email", user.getEmail())
-                .append("password", user.getPassword()) // Should be hashed in production
-                .append("role", user.getRole())
+                .append("password", user.getPassword())
+                .append("role", user.getRole()) // Works through polymorphism
                 .append("fullName", user.getFullName())
                 .append("phone", user.getPhone());
 
         userCollection.insertOne(doc);
     }
 
-    //Get All Users
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
 
         for (Document doc : userCollection.find()) {
-            User u = new User(
-                    doc.getString("email"),
-                    doc.getString("password"),
-                    doc.getString("role"),
-                    doc.getString("fullName"),
-                    doc.getString("phone")
-            );
-            users.add(u);
+            users.add(createUserFromDocument(doc.getString("role"), doc)); // Polymorphism
         }
 
         return users;
     }
 
-    // Find a single user by email
     public User findUserByEmail(String email) {
         Document query = new Document("email", email);
         Document result = userCollection.find(query).first();
 
         if (result != null) {
-            return new User(
-                    result.getString("email"),
-                    result.getString("password"),
-                    result.getString("role"),
-                    result.getString("fullName"),
-                    result.getString("phone")
-            );
+            return createUserFromDocument(result.getString("role"), result);
         }
         return null;
     }
 
-    // Update User Info
     public void updateUser(User updatedUser) {
         Document query = new Document("email", updatedUser.getEmail());
 
@@ -104,7 +91,6 @@ public class UserDAO {
         userCollection.updateOne(query, update);
     }
 
-    // Delete a user by email
     public boolean deleteUserByEmail(String email) {
         Document query = new Document("email", email);
         return userCollection.deleteOne(query).getDeletedCount() > 0;
