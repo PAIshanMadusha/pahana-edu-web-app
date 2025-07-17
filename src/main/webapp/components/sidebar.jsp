@@ -119,7 +119,7 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/help"
+                <a href="${pageContext.request.contextPath}/staff/help.jsp"
                    class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/help") ? "active" : "" %>">
                     <i class="bi bi-info-circle me-2"></i>
                     <span class="sidebar-text">Help</span>
