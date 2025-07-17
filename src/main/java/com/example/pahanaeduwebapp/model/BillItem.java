@@ -2,7 +2,7 @@ package com.example.pahanaeduwebapp.model;
 
 /**
  * Represents a single item in a bill.
- * OOP: Encapsulation, part of composition in Bill.
+ * Encapsulation, part of composition in Bill.
  */
 public class BillItem {
 

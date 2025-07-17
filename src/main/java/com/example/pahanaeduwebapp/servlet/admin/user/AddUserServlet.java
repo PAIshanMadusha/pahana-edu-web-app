@@ -8,11 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
 /**
  * Servlet to handle adding a new user from the admin panel.
+ * OOP Used: Polymorphism (creates Admin or Staff using base type reference)
  */
 @WebServlet("/admin/users/add")
 public class AddUserServlet extends HttpServlet {
@@ -30,21 +30,21 @@ public class AddUserServlet extends HttpServlet {
 
         // Get form data
         String email = request.getParameter("email");
-        String password = request.getParameter("password"); // In production: hash this
+        String password = request.getParameter("password"); // TODO: Hash in production
         String fullName = request.getParameter("fullName");
         String role = request.getParameter("role");
         String phone = request.getParameter("phone");
 
-        // Basic null check
+        // Validate input
         if (email == null || password == null || role == null) {
             response.sendRedirect(request.getContextPath() + "/admin/users/add.jsp?error=Missing+fields");
             return;
         }
 
-        // Create user object
-        User newUser = new User(email, password, role, fullName, phone);
+        // OOP: Use factory-style method with polymorphism to create correct subclass
+        User newUser = User.createByRole(role, email, password, fullName, phone);
 
-        // Save to DB
+        // Save user to DB
         userDAO.addUser(newUser);
 
         request.getSession().setAttribute("successMessage", "User added successfully.");

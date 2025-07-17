@@ -50,7 +50,8 @@ public class EditUserServlet extends HttpServlet {
         String role = request.getParameter("role");
         String phone = request.getParameter("phone");
 
-        User updatedUser = new User(email, null, role, fullName, phone);
+        // OOP: Factory-style method creates the correct subclass (Admin/Staff)
+        User updatedUser = User.createByRole(role, email, null, fullName, phone);
         userDAO.updateUser(updatedUser);
 
         request.getSession().setAttribute("successMessage", "User updated successfully.");
