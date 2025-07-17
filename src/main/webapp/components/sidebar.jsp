@@ -101,7 +101,7 @@
                 <a href="${pageContext.request.contextPath}/staff/items"
                    class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/items") ? "active" : "" %>">
                     <i class="bi bi-journal-plus me-2"></i>
-                    <span class="sidebar-text">Manage Items</span>
+                    <span class="sidebar-text">View Items</span>
                 </a>
             </li>
             <li>
