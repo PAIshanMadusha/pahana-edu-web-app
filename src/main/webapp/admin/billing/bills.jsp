@@ -24,7 +24,7 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-2">
-        <h2 class="mb-4">Manage Bills</h2>
+        <h2 class="mb-4">View Bills</h2>
 
         <!-- Alert Messages -->
         <c:if test="${not empty sessionScope.successMessage}">
@@ -63,7 +63,7 @@
                     <td>${b.createdAt}</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <form method="post" action="${pageContext.request.contextPath}/staff/billing/view">
+                            <form method="post" action="${pageContext.request.contextPath}/admin/billing/view">
                                 <input type="hidden" name="billId" value="${b.billId}" />
                                 <button type="submit" class="btn btn-sm btn-primary" style="width: 70px;">View</button>
                             </form>
