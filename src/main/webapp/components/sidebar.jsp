@@ -54,8 +54,8 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/admin/logs"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/admin/logs") ? "active" : "" %>">
+                <a href="${pageContext.request.contextPath}/admin/auditLogs"
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/admin/auditLogs") ? "active" : "" %>">
                     <i class="bi bi-clock-history me-2"></i>
                     <span class="sidebar-text">Audit Logs</span>
                 </a>
