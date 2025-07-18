@@ -40,10 +40,10 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/admin/billing"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/admin/billing") ? "active" : "" %>">
+                <a href="${pageContext.request.contextPath}/admin/billing/bills"
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/admin/billing/bills") ? "active" : "" %>">
                     <i class="bi bi-calculator me-2"></i>
-                    <span class="sidebar-text">Generate Bills</span>
+                    <span class="sidebar-text">View Bill History</span>
                 </a>
             </li>
             <li>
@@ -119,7 +119,7 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/help"
+                <a href="${pageContext.request.contextPath}/staff/help.jsp"
                    class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/help") ? "active" : "" %>">
                     <i class="bi bi-info-circle me-2"></i>
                     <span class="sidebar-text">Help</span>
