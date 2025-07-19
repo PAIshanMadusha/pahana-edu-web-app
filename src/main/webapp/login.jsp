@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Pahana Edu | Login</title>
 
-    <!-- ✅ Bootstrap CSS (local) -->
+    <!-- Bootstrap CSS (local) -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 
     <style>
@@ -27,12 +27,12 @@
             <div class="card shadow-lg p-4">
                 <h3 class="text-center mb-4">Staff / Admin Login</h3>
 
-                <!-- ✅ Display error message if login fails -->
+                <!-- Display error message if login fails -->
                 <c:if test="${not empty error}">
                     <div class="alert alert-danger text-center">${error}</div>
                 </c:if>
 
-                <!-- ✅ Login Form -->
+                <!-- Login Form -->
                 <form action="${pageContext.request.contextPath}/login" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
@@ -48,9 +48,9 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
 
-                    <!-- ✅ Optional forgot password (future feature) -->
+                    <!-- forgot password -->
                     <div class="mt-3 text-center">
-                        <a href="#">Forgot password?</a>
+                        <a href="forgot-password.jsp">Forgot password?</a>
                     </div>
                 </form>
             </div>
@@ -58,7 +58,7 @@
     </div>
 </div>
 
-<!-- ✅ Bootstrap JS (local) -->
+<!-- Bootstrap JS (local) -->
 <script src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
