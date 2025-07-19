@@ -25,7 +25,7 @@
 
 <main class="flex-grow-1 p-4">
   <div class="container mt-4">
-    <h2 class="mb-3"><i class="bi bi-shield-lock-fill me-2 text-danger"></i>Admin Help Guide</h2>
+    <h2 class="mb-3"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Admin Help Guide</h2>
     <p class="text-muted">This guide helps administrators manage and control the Pahana Edu System effectively.</p>
 
     <div class="accordion" id="adminHelpAccordion">
