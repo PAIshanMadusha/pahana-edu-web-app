@@ -43,14 +43,14 @@
                 <a href="${pageContext.request.contextPath}/admin/billing/bills"
                    class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/admin/billing/bills") ? "active" : "" %>">
                     <i class="bi bi-calculator me-2"></i>
-                    <span class="sidebar-text">View Bill History</span>
+                    <span class="sidebar-text">View Bills</span>
                 </a>
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/admin/reports"
                    class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/admin/reports") ? "active" : "" %>">
                     <i class="bi bi-bar-chart-line me-2"></i>
-                    <span class="sidebar-text">Reports</span>
+                    <span class="sidebar-text">View Reports</span>
                 </a>
             </li>
             <li>
@@ -61,8 +61,8 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/help"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/help") ? "active" : "" %>">
+                <a href="${pageContext.request.contextPath}/admin/help.jsp"
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/help.jsp") ? "active" : "" %>">
                     <i class="bi bi-question-circle me-2"></i>
                     <span class="sidebar-text">Help</span>
                 </a>
@@ -120,7 +120,7 @@
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/staff/help.jsp"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/help") ? "active" : "" %>">
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/help.jsp") ? "active" : "" %>">
                     <i class="bi bi-info-circle me-2"></i>
                     <span class="sidebar-text">Help</span>
                 </a>

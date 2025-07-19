@@ -95,4 +95,10 @@ public class UserDAO {
         Document query = new Document("email", email);
         return userCollection.deleteOne(query).getDeletedCount() > 0;
     }
+
+    public void updatePassword(String email, String newPassword) {
+        Document query = new Document("email", email);
+        Document update = new Document("$set", new Document("password", newPassword));
+        userCollection.updateOne(query, update);
+    }
 }
