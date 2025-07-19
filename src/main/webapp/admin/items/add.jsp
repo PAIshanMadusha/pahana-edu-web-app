@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 <%
-    // ✅ Role check: only admin allowed
+    // Role check: only admin allowed
     com.example.pahanaeduwebapp.model.User user =
             (com.example.pahanaeduwebapp.model.User) session.getAttribute("user");
 
@@ -21,7 +21,7 @@
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
 
-<!-- ✅ Reusable layout -->
+<!-- Reusable layout -->
 <%@ include file="/components/header.jsp" %>
 <%@ include file="/components/sidebar.jsp" %>
 
@@ -29,7 +29,7 @@
     <div class="container mt-3">
         <h2 class="mb-4">Add New Item</h2>
 
-        <!-- ✅ Item Form -->
+        <!-- Item Form -->
         <form method="post" action="${pageContext.request.contextPath}/admin/items/add"
               class="row g-3 needs-validation" novalidate>
 
@@ -92,7 +92,7 @@
 
 <%@ include file="/components/footer.jsp" %>
 
-<!-- ✅ Bootstrap validation script -->
+<!-- Bootstrap validation script -->
 <script>
     (() => {
         'use strict';
