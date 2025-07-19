@@ -4,7 +4,7 @@
 <%@ page session="true" %>
 
 <%
-    // ✅ Basic Role Check (only admin can access this)
+    // Basic Role Check (only admin can access this)
     com.example.pahanaeduwebapp.model.User user =
             (com.example.pahanaeduwebapp.model.User) session.getAttribute("user");
 
@@ -24,7 +24,7 @@
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
 
-<!-- ✅ Reusable Header and Sidebar -->
+<!-- Reusable Header and Sidebar -->
 <%@ include file="/components/header.jsp" %>
 <%@ include file="/components/sidebar.jsp" %>
 
@@ -32,14 +32,14 @@
     <div class="container mt-2">
         <h2 class="mb-4">Item Management</h2>
 
-        <!-- ✅ Add New Item Button -->
+        <!-- Add New Item Button -->
         <div class="mb-3">
             <a href="${pageContext.request.contextPath}/admin/items/add.jsp" class="btn btn-success">
                 <i class="bi bi-plus-circle me-1"></i> Add New Item
             </a>
         </div>
 
-        <!-- ✅ Success Message After Add/Edit/Delete -->
+        <!-- Success Message After Add/Edit/Delete -->
         <c:if test="${not empty sessionScope.successMessage}">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                     ${sessionScope.successMessage}
@@ -48,7 +48,7 @@
             <c:remove var="successMessage" scope="session" />
         </c:if>
 
-        <!-- ✅ Item List Table -->
+        <!-- Item List Table -->
         <table class="table table-bordered table-hover table-striped">
             <thead class="table-dark">
             <tr>
@@ -98,7 +98,7 @@
 
 <%@ include file="/components/footer.jsp" %>
 
-<!-- ✅ Bootstrap JS (for alert and responsiveness) -->
+<!-- Bootstrap JS (for alert and responsiveness) -->
 <script src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>

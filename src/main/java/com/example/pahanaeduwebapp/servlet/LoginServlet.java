@@ -1,13 +1,18 @@
 package com.example.pahanaeduwebapp.servlet;
 
+import com.example.pahanaeduwebapp.dao.AuditLogDAO;
 import com.example.pahanaeduwebapp.dao.UserDAO;
+import com.example.pahanaeduwebapp.model.AuditLog;
 import com.example.pahanaeduwebapp.model.User;
+import com.example.pahanaeduwebapp.repository.AuditLogRepository;
 import com.example.pahanaeduwebapp.util.DatabaseInitializer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Handles login request and session setup.
@@ -32,6 +37,15 @@ public class LoginServlet extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user); // Holds Admin or Staff
+
+            AuditLog log = new AuditLog();
+            log.setUserEmail(user.getEmail());
+            log.setAction("Login");
+            log.setDetails("User logged in");
+            log.setTimestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+            AuditLogRepository auditDAO = new AuditLogDAO();
+            auditDAO.logAction(log);
 
             // Use polymorphism to redirect by role
             String role = user.getRole();
