@@ -13,7 +13,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Staff Dashboard</title>
+    <title>Pahana Edu | Staff Dashboard</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
@@ -23,7 +24,7 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-2 mb-4">
-        <h2 class="mb-4"><i class="bi bi-speedometer2 me-2 text-primary"></i>Staff Dashboard</h2>
+        <h2 class="mb-4"><i class="bi bi-person-lines-fill me-2 text-primary"></i>Staff Dashboard</h2>
 
         <div class="row g-4">
 
@@ -42,9 +43,9 @@
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 h-100 bg-success-subtle">
                     <div class="card-body">
-                        <h5 class="card-title"><i class="bi bi-search me-2"></i> View Customers</h5>
+                        <h5 class="card-title"><i class="bi bi-search me-2"></i> Manage Customers</h5>
                         <p class="card-text">View, edit, delete or search for registered customer accounts.</p>
-                        <a href="${pageContext.request.contextPath}/staff/customers" class="btn btn-primary" style="width: 70px;">View</a>
+                        <a href="${pageContext.request.contextPath}/staff/customers" class="btn btn-primary" style="width: 70px;">Go</a>
                     </div>
                 </div>
             </div>
@@ -96,6 +97,14 @@
         </div>
     </div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('sidebarExpanded') === 'true') {
+            document.body.classList.add('sidebar-expanded');
+        }
+    });
+</script>
 
 <%@ include file="/components/footer.jsp" %>
 

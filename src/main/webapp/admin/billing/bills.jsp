@@ -14,7 +14,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Manage Bills</title>
+    <title>Pahana Edu | Manage Bills</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
@@ -24,7 +25,7 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-2">
-        <h2 class="mb-4">View Bills</h2>
+        <h2 class="mb-4"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Manage Bills</h2>
 
         <!-- Alert Messages -->
         <c:if test="${not empty sessionScope.successMessage}">

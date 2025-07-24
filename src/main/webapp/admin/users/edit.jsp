@@ -14,7 +14,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Edit User</title>
+    <title>Pahana Edu | Edit User</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
@@ -25,7 +26,7 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-2">
-        <h2 class="mb-4">Edit User</h2>
+        <h2 class="mb-4"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Edit User</h2>
 
         <form action="${pageContext.request.contextPath}/admin/users/edit" method="post" >
             <!-- Email (readonly) -->

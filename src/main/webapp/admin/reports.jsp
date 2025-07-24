@@ -15,7 +15,8 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Admin Reports</title>
+    <title>Pahana Edu | Reports</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -32,8 +33,8 @@
 <%@ include file="/components/sidebar.jsp" %>
 
 <main class="flex-grow-1 p-4">
-    <div class="container">
-        <h2 class="mb-4">Reports Dashboard</h2>
+    <div class="container mt-2">
+        <h2 class="mb-4"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>View Reports</h2>
 
         <!-- Monthly Revenue Card -->
         <div class="mb-5">

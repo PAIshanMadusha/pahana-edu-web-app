@@ -20,7 +20,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Billing History</title>
+    <title>Pahana Edu | Billing History</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
@@ -28,8 +29,8 @@
 <%@ include file="/components/sidebar.jsp" %>
 
 <main class="flex-grow-1 p-4">
-    <div class="container mt-4">
-    <h2 class="mb-4">Billing History</h2>
+    <div class="container mt-2">
+    <h2 class="mb-4"><i class="bi bi-person-lines-fill me-2 text-primary"></i>Billing History</h2>
 
     <c:if test="${empty bills}">
         <div class="alert alert-warning">No bills found.</div>

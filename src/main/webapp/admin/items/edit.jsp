@@ -21,7 +21,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Edit Item</title>
+    <title>Pahana Edu | Edit Item</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap-icons/bootstrap-icons.css">
 </head>
@@ -32,8 +33,8 @@
 <%@ include file="/components/sidebar.jsp" %>
 
 <main class="flex-grow-1 p-4">
-    <div class="container mt-4">
-        <h2 class="mb-4">Edit Item</h2>
+    <div class="container mt-2">
+        <h2 class="mb-4"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Edit Item</h2>
 
         <form method="post" action="${pageContext.request.contextPath}/admin/items/edit" class="row g-3 needs-validation" novalidate>
             <!-- Hidden field to keep the item ID -->

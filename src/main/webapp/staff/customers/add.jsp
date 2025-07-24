@@ -16,18 +16,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Add Customer</title>
+    <title>Pahana Edu | Add New Customer</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px; background-color: #f8f9fa;">
 <%@ include file="/components/header.jsp" %>
 <%@ include file="/components/sidebar.jsp" %>
 
 <main class="flex-grow-1 p-4">
-    <div class="container mt-4">
+    <div class="container mt-2">
             <div class="card-body p-2">
-                <h2 class="mb-4 text-primary"><i class="bi bi-person-plus-fill me-2"></i>Add New Customer</h2>
+                <h2 class="mb-4"><i class="bi bi-person-lines-fill me-2 text-primary"></i>Add New Customer</h2>
 
                 <form method="post" action="${pageContext.request.contextPath}/staff/customers/add" class="row g-4 needs-validation" novalidate>
 

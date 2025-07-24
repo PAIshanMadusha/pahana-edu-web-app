@@ -14,7 +14,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Help - Staff</title>
+    <title>Pahana Edu | Help</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap-icons/bootstrap-icons.css">
 </head>
@@ -25,8 +26,8 @@
 <%@ include file="/components/sidebar.jsp" %>
 
 <main class="flex-grow-1 p-4">
-    <div class="container mt-4">
-    <h2 class="mb-3"><i class="bi bi-question-circle-fill me-2 text-primary"></i>Staff Help Guide</h2>
+    <div class="container mt-2">
+    <h2 class="mb-3"><i class="bi bi-person-lines-fill me-2 text-primary"></i>Staff Help Guide</h2>
     <p class="text-muted">This page provides a step-by-step guide on how to use the Pahana Edu system as a staff member.</p>
 
     <div class="accordion" id="helpAccordion">
@@ -42,7 +43,7 @@
                 <div class="accordion-body">
                     <ul>
                         <li><strong>Add Customer:</strong> Go to "Add Customer" > "Add New". Fill in customer details and save.</li>
-                        <li><strong>View Customer:</strong> Next, Go to "View Customer Tab"</li>
+                        <li><strong>Manage Customers:</strong> Next, Go to "Manage Customers Tab"</li>
                         <li><strong>Edit:</strong> Click the "Edit" button next to a customer to update their info.</li>
                         <li><strong>Delete:</strong> Use the "Delete" button to remove a customer after confirmation.</li>
                         <li><strong>Search:</strong> Use the search bar to find a customer by name, email, or account number.</li>
@@ -112,6 +113,17 @@
             <div id="collapseSupport" class="accordion-collapse collapse" aria-labelledby="headingSupport" data-bs-parent="#helpAccordion">
                 <div class="accordion-body">
                     <p>If you need further assistance, please contact your system administrator or send an email to <strong>support@pahanaedu.lk</strong>.</p>
+                    <p>
+                        For system bugs, feature enhancements, or any technical inquiries related to this application,
+                        please reach out to the developer:
+                    </p>
+                    <p>
+                        <strong>Ishan Madhusha</strong><br />
+                        GitHub:
+                        <a href="https://github.com/PAIshanMadusha" target="_blank">
+                            github.com/PAIshanMadusha
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>

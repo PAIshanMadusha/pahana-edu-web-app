@@ -14,9 +14,11 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
+    <title>Pahana Edu | Admin Dashboard</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 </head>
+
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
 
 <!-- Reusable Header -->
@@ -66,7 +68,7 @@
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 h-100 bg-warning-subtle">
                     <div class="card-body">
-                        <h5 class="card-title"><i class="bi bi-graph-up-arrow me-2"></i> Reports</h5>
+                        <h5 class="card-title"><i class="bi bi-graph-up-arrow me-2"></i> View Reports</h5>
                         <p class="card-text">View billing activity, staff performance, and revenue reports.</p>
                         <a href="${pageContext.request.contextPath}/admin/reports" class="btn btn-primary" style="width: 70px;">View</a>
                     </div>
@@ -97,6 +99,14 @@
         </div>
     </div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('sidebarExpanded') === 'true') {
+            document.body.classList.add('sidebar-expanded');
+        }
+    });
+</script>
 
 <!-- Reusable Footer -->
 <%@ include file="/components/footer.jsp" %>

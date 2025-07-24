@@ -18,7 +18,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Manage Items</title>
+    <title>Pahana Edu | Manage Items</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap-icons/bootstrap-icons.css">
 </head>
@@ -30,11 +31,11 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-2">
-        <h2 class="mb-4">Item Management</h2>
+        <h2 class="mb-4"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Manage Items</h2>
 
         <!-- Add New Item Button -->
         <div class="mb-3">
-            <a href="${pageContext.request.contextPath}/admin/items/add.jsp" class="btn btn-success">
+            <a href="${pageContext.request.contextPath}/admin/items/add.jsp" class="btn btn-primary">
                 <i class="bi bi-plus-circle me-1"></i> Add New Item
             </a>
         </div>

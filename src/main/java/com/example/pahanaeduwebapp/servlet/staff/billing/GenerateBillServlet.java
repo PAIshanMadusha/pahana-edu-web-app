@@ -79,7 +79,8 @@ public class GenerateBillServlet extends HttpServlet {
         String billId = UUID.randomUUID().toString().substring(0, 8);
         String createdAt = LocalDateTime.now().toString();
         Bill bill = new Bill(billId, customerAccountNumber, billItems, 0.0, createdAt);
-        bill.setTotalAmount(bill.calculateTotal());
+        double roundedTotal = Math.round(bill.calculateTotal() * 100.0) / 100.0;
+        bill.setTotalAmount(roundedTotal);
 
         // Save to DB
         billDAO.saveBill(bill);

@@ -2,7 +2,7 @@
 <%@ page session="true" %>
 
 <%
-        String currentPath = request.getServletPath();
+    String currentPath = request.getServletPath();
 %>
 
 <div id="sidebar" class="text-white position-fixed d-flex flex-column p-2 sidebar"
@@ -62,9 +62,9 @@
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/admin/help.jsp"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/help.jsp") ? "active" : "" %>">
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.endsWith("/help.jsp") ? "active" : "" %>">
                     <i class="bi bi-question-circle me-2"></i>
-                    <span class="sidebar-text">Help</span>
+                    <span class="sidebar-text">Help Guide</span>
                 </a>
             </li>
         </c:if>
@@ -93,7 +93,7 @@
                 <a href="${pageContext.request.contextPath}/staff/customers"
                    class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/staff/customers") && !currentPath.contains("/staff/customers/add") ? "active" : "" %>">
                     <i class="bi bi-search me-2"></i>
-                    <span class="sidebar-text">View Customers</span>
+                    <span class="sidebar-text">Manage Customers</span>
                 </a>
             </li>
 
@@ -120,9 +120,9 @@
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/staff/help.jsp"
-                   class="nav-link text-white d-flex align-items-center <%= currentPath.contains("/help.jsp") ? "active" : "" %>">
+                   class="nav-link text-white d-flex align-items-center <%= currentPath.endsWith("/help.jsp") ? "active" : "" %>">
                     <i class="bi bi-info-circle me-2"></i>
-                    <span class="sidebar-text">Help</span>
+                    <span class="sidebar-text">Help Guide</span>
                 </a>
             </li>
         </c:if>
@@ -138,7 +138,13 @@
             <strong class="sidebar-text">${user.fullName}</strong><br>
         </div>
         <div class="mb-2">
-            <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger mt-2 sidebar-text">Logout</a>
+            <a href="${pageContext.request.contextPath}/logout"
+               class="btn btn-danger mt-2 sidebar-text"
+               onclick="return confirm('Are you sure you want to logout?');">
+                Logout
+            </a>
         </div>
     </div>
 </div>
+
+<script src="${pageContext.request.contextPath}/assets/js/highlightLinks.js"></script>

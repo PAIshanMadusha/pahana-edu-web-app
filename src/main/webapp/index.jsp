@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pahana Education - Welcome</title>
+    <title>Pahana Edu | Welcome</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <!-- Bootstrap CSS (local) -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 
-    <!-- Custom styles -->
+    <!-- Internal CSS -->
     <style>
         body, html {
             height: 100%;
@@ -39,9 +40,8 @@
 <body>
 
 <div class="overlay">
-    <h1 class="display-4 fw-bold text-center">Pahana Education Bookshop</h1>
+    <h1 class="display-3 fw-bold text-center">Pahana Edu Online Billing</h1>
     <p class="lead text-center">Efficient Billing. Smart Management. Trusted Service.</p>
-
     <!-- Start/Login Button -->
     <a href="${pageContext.request.contextPath}/login.jsp" class="btn btn-primary start-btn">Click to Start</a>
 </div>

@@ -13,7 +13,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Edit Customer</title>
+    <title>Pahana Edu | Edit Customer</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
@@ -22,7 +23,7 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-2">
-        <h2>Edit Customer</h2>
+        <h2 class="mb-4"><i class="bi bi-person-lines-fill me-2 text-primary"></i>Edit Customer</h2>
 
         <form action="${pageContext.request.contextPath}/staff/customers/edit" method="post" class="needs-validation" novalidate>
             <input type="hidden" name="accountNumber" value="${customer.accountNumber}"/>

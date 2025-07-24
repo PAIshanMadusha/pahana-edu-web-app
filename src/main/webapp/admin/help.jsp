@@ -14,7 +14,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Help - Admin</title>
+  <title>Pahana Edu | Help</title>
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap-icons/bootstrap-icons.css">
 </head>
@@ -24,7 +25,7 @@
 <%@ include file="/components/sidebar.jsp" %>
 
 <main class="flex-grow-1 p-4">
-  <div class="container mt-4">
+  <div class="container mt-2">
     <h2 class="mb-3"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Admin Help Guide</h2>
     <p class="text-muted">This guide helps administrators manage and control the Pahana Edu System effectively.</p>
 
@@ -128,6 +129,30 @@
         <div id="collapseExit" class="accordion-collapse collapse" aria-labelledby="headingExit" data-bs-parent="#adminHelpAccordion">
           <div class="accordion-body">
             <p>Click <strong>Logout</strong> from the sidebar to safely end your session.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSupport">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSupport" aria-expanded="false" aria-controls="collapseSupport">
+            📞 Support
+          </button>
+        </h2>
+        <div id="collapseSupport" class="accordion-collapse collapse" aria-labelledby="headingSupport" data-bs-parent="#helpAccordion">
+          <div class="accordion-body">
+            <p>
+              For system bugs, feature enhancements, or any technical inquiries related to this application,
+              please reach out to the developer:
+            </p>
+            <p>
+              <strong>Ishan Madhusha</strong><br />
+              GitHub:
+              <a href="https://github.com/PAIshanMadusha" target="_blank">
+                github.com/PAIshanMadusha
+              </a>
+            </p>
           </div>
         </div>
       </div>

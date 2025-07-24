@@ -15,7 +15,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Add New Item</title>
+    <title>Pahana Edu | Add New Item</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap-icons/bootstrap-icons.css">
 </head>
@@ -27,7 +28,7 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-3">
-        <h2 class="mb-4">Add New Item</h2>
+        <h2 class="mb-4"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Add New Item</h2>
 
         <!-- Item Form -->
         <form method="post" action="${pageContext.request.contextPath}/admin/items/add"

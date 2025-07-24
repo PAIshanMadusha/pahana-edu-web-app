@@ -17,7 +17,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Customer List</title>
+    <title>Pahana Edu | Manage Customers</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap-icons/bootstrap-icons.css">
 </head>
@@ -29,14 +30,14 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-2">
-        <h2 class="mb-4">Customer List</h2>
+        <h2 class="mb-4"><i class="bi bi-person-lines-fill me-2 text-primary"></i>Manage Customers</h2>
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form method="get" action="${pageContext.request.contextPath}/staff/customers" class="d-flex">
                 <input type="text" name="search" class="form-control form-control-sm me-2"
                        placeholder="Search by name, email or account number"
                        value="${searchQuery != null ? searchQuery : ''}" style="max-width: 250px;"/>
-                <button class="btn btn-success btn-sm d-flex align-items-center" type="submit">
+                <button class="btn btn-primary btn-sm d-flex align-items-center" type="submit">
                     <i class="bi bi-search me-1"></i> Search
                 </button>
             </form>

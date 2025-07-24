@@ -15,7 +15,8 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Audit Logs</title>
+    <title>Pahana Edu | Audit Logs</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css" />
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh; margin-left: 70px;">
@@ -25,7 +26,7 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-2">
-        <h2 class="mb-4">Audit Logs</h2>
+        <h2 class="mb-4"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Audit Logs</h2>
 
         <c:if test="${not empty sessionScope.successMessage}">
             <div class="alert alert-success alert-dismissible fade show" role="alert">

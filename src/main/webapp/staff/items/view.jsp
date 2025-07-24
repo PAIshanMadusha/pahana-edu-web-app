@@ -17,11 +17,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>View Items</title>
+    <title>Pahana Edu | View Items</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap-icons/bootstrap-icons.css">
 
-    <!-- CSS Inline -->
+    <!-- Internal CSS -->
     <style>
         .item-card {
             transition: transform 0.2s ease;
@@ -52,29 +53,32 @@
 
 <main class="flex-grow-1 p-4">
     <div class="container mt-2">
-        <h2 class="mb-4">Available Items</h2>
+        <h2 class="mb-4 text-primary fw-semibold">
+            <i class="bi bi-person-lines-fill me-2"></i> Available Items
+        </h2>
 
         <!-- Search Bar -->
-        <div class="mb-3">
-            <input type="text" class="form-control" id="itemSearchInput"
-                   placeholder="Search by name or category...">
+        <div class="input-group mb-4 shadow-sm">
+            <span class="input-group-text bg-white"><i class="bi bi-search text-secondary"></i></span>
+            <input type="text" class="form-control border-start-0" id="itemSearchInput"
+                   placeholder="Search by item name or category...">
         </div>
 
         <!-- Card Grid -->
         <div class="row" id="itemCardContainer">
             <c:forEach var="item" items="${items}">
                 <div class="col-md-4 col-lg-3 mb-4 item-card-wrapper">
-                    <div class="card item-card h-100 shadow-sm">
+                    <div class="card item-card h-100 shadow-sm border-0">
                         <c:if test="${not empty item.imageUrl}">
-                            <img src="${item.imageUrl}" class="card-img-top item-img" alt="${item.name}">
+                            <img src="${item.imageUrl}" class="card-img-top item-img rounded-top" alt="${item.name}">
                         </c:if>
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${item.name}</h5>
-                            <h6 class="text-muted mb-1">${item.category}</h6>
-                            <p class="card-text text-muted truncate-text">${item.description}</p>
+                            <h5 class="card-title fw-semibold text-primary">${item.name}</h5>
+                            <h6 class="text-muted small mb-2">${item.category}</h6>
+                            <p class="card-text text-muted small truncate-text mb-2">${item.description}</p>
                             <div class="mt-auto">
-                                <p class="mb-1"><strong>Price:</strong> Rs. <fmt:formatNumber value="${item.price}" type="number" /></p>
-                                <p><strong>Stock:</strong> ${item.quantity}</p>
+                                <p class="mb-1 text-dark"><strong>Price:</strong> Rs. <fmt:formatNumber value="${item.price}" type="number" /></p>
+                                <p class="text-dark"><strong>Stock:</strong> ${item.quantity}</p>
                             </div>
                         </div>
                     </div>
@@ -82,7 +86,7 @@
             </c:forEach>
 
             <c:if test="${empty items}">
-                <div class="text-center text-muted">No items found.</div>
+                <div class="col-12 text-center text-muted mt-4">No items found.</div>
             </c:if>
         </div>
     </div>
