@@ -12,11 +12,17 @@ import com.mongodb.client.MongoDatabase;
 public class MongoDBConnection {
 
     private static MongoClient mongoClient;
-    private static final String URI = "mongodb://localhost:27017";
-    private static final String DB_NAME = "pahana_edu";
+    private static final String URI;
+    private static final String DB_NAME;
 
     // Static block to create the MongoDB client
     static {
+
+        //Supports both local and production
+        String uriFromEnv = System.getenv("MONGODB_URI");
+        URI = (uriFromEnv != null && !uriFromEnv.isEmpty()) ? uriFromEnv : "mongodb://localhost:27017";
+        DB_NAME = "pahana_edu";
+
         try {
             mongoClient = MongoClients.create(URI);
 
