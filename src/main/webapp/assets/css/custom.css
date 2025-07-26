@@ -1,0 +1,63 @@
+/* Sidebar base */
+.sidebar {
+    width: 70px;
+    transition: width 0.3s ease;
+}
+
+body.sidebar-expanded .sidebar {
+    width: 250px;
+}
+
+/* Hide text by default */
+.sidebar-text {
+    display: none;
+}
+
+/* Show text when expanded */
+body.sidebar-expanded .sidebar-text {
+    display: inline !important;
+}
+
+/* Adjust body margin to shift with sidebar */
+body {
+    margin-left: 70px;
+    transition: margin-left 0.3s;
+}
+
+body.sidebar-expanded {
+    margin-left: 250px !important;
+}
+
+/* Main area */
+main {
+    transition: margin-left 0.3s;
+}
+
+.nav-link {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffc107 !important;
+}
+.nav-link:hover i,
+.nav-link:hover .sidebar-text {
+    color: #ffc107 !important;
+}
+
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    color: white !important;
+}
+.nav-link.active i,
+.nav-link.active .sidebar-text {
+    color: white !important;
+}
+
+/* Optional style for dividers */
+.sidebar-divider {
+    border-color: rgba(255, 255, 255, 0.9);
+    margin: 0.5rem 0;
+}
