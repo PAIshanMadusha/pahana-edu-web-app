@@ -47,7 +47,6 @@ public class BillDAO implements BillRepository {
             }
         }
         doc.append("items", itemDocs);
-
         billCollection.insertOne(doc);
     }
 
