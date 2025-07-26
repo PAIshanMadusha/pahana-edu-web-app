@@ -1,5 +1,8 @@
 <p align="center">
-  <h1 align="center">📚 Pahana Edu Online Billing</h1>
+  <h1 align="center">
+    <img src="https://github.com/user-attachments/assets/c6a5893d-6e05-404f-a6bb-2b96376283fa" width="26" alt="App Icon" style="vertical-align:middle;" />
+    Pahana Edu Online Billing
+  </h1>
   <h3 align="center">BUILT USING MVC & 3-TIER ARCHITECTURE, DEPLOYED ON AWS</h3>
 </p>
 
@@ -26,7 +29,7 @@
 
 ---
 
-**Pahana Edu** is a Java-based web application developed as an academic project for a leading bookshop in Colombo, Sri Lanka. The system streamlines operations such as customer management, inventory handling, billing, reporting, and user access control. It supports **Admin** and **Staff** user roles, integrates with **MongoDB**, and features a clean, responsive UI built with **Bootstrap**. The application runs on **Apache Tomcat 9** and is deployed using AWS Elastic Beanstalk.
+**Pahana Edu** is a Java-based web application developed as an academic project for a leading bookshop in Colombo, Sri Lanka. The system streamlines operations such as customer management, inventory handling, customer billing, reporting, and user access control. It supports **Admin** and **Staff** user roles, integrates with **MongoDB**, and features a clean, responsive UI built with **Bootstrap**. The application runs on **Apache Tomcat 9** and is deployed using AWS Elastic Beanstalk.
 
 ## 📑 Table of Contents
 
@@ -84,23 +87,23 @@ The following technologies are used in this project:
 ## 🏗 Project Architecture
 The project follows professional Object-Oriented Design principles using both **MVC** and **3-Tier Architecture**. Below is a brief overview of the applied concepts:
 
-#### 🔐 Encapsulation:
-> ##### `Model` classes (e.g., `User`, `Customer`, `Bill`, etc.) encapsulate data using private fields with public getters and setters.
+> #### 🔐 Encapsulation:
+##### * `Model` classes (e.g., `User`, `Customer`, `Bill`, etc.) encapsulate data using private fields with public getters and setters.
 
-#### 🔁 Inheritance & Polymorphism:
-> ##### `Admin` and `Staff` classes extend the abstract `User` class, each overriding methods like `getRole()` to implement role-specific behavior.
+> #### 🔁 Inheritance & Polymorphism:
+##### * `Admin` and `Staff` classes extend the abstract `User` class, each overriding methods like `getRole()` to implement role-specific behavior.
 
-#### 🧩 Abstraction:
-> ##### The `User` class is abstract, defining a shared structure for all user types & Interfaces (e.g., `BillRepository`, etc.) abstract core operations like billing, providing a clear contract for implementations.
+> #### 🧩 Abstraction:
+##### * The `User` class is abstract, defining a shared structure for all user types & Interfaces (e.g., `BillRepository`, etc.) abstract core operations like billing, providing a clear contract for implementations.
 
-#### 🏭 Factory Pattern:
-> ##### The method `createUserFromDocument()` acts as a factory, dynamically returning an instance of `Admin` or `Staff` based on the `role` field from MongoDB documents.
+> #### 🏭 Factory Pattern:
+##### * The method `createUserFromDocument()` acts as a factory, dynamically returning an instance of `Admin` or `Staff` based on the `role` field from MongoDB documents.
 
-#### 🧵 Singleton Pattern:
-> ##### The `MongoDBConnection` class implements the Singleton Pattern to ensure a single, reusable database connection instance throughout the application.
+> #### 🧵 Singleton Pattern:
+##### * The `MongoDBConnection` class implements the Singleton Pattern to ensure a single, reusable database connection instance throughout the application.
 
-#### 🧠 Session Management:
-> ##### `HttpSession` is used for maintaining user session data securely across authenticated pages.
+> #### 🧠 Session Management:
+##### * `HttpSession` is used for maintaining user session data securely across authenticated pages.
 
 ```
 pahana-edu-web-app/
@@ -130,8 +133,8 @@ pahana-edu-web-app/
 |   └── test/
 |        └── java/
 |            └── com.example.pahanaeduwebapp/
-|                ├── dao/              # DAO unit tests
-|                └── model/            # Model validation tests
+|                ├── dao/             # DAO unit tests
+|                └── model/           # Model validation tests
 ├── .gitignore
 ├── LICENSE
 ├── pom.xml
@@ -140,7 +143,7 @@ pahana-edu-web-app/
 
 ---
 
-## ⚙️ Setup & Installation
+## ⚙ Setup & Installation
 
 Follow these steps to run the project locally:
 
@@ -170,16 +173,17 @@ cd pahana-edu-web-app
 ##### * After dependencies are loaded and MongoDB is connected, run the project with **Apache Tomcat 9**.
 ##### * Once the configuration is complete, attempt to log in. You should see:
 
-```
+```bash
 Artifact is deployed successfully
 MongoDB Connected Successfully to database: pahana_edu
 Default admin created: admin@pahana.com / admin123
 ```
+
 ##### * Use the default credentials to log in.
 
 ---
 
-## ☁️ Deployment
+## ☁ Deployment
 
 ### Generate a deployable WAR file using the following command:
 
@@ -188,9 +192,8 @@ mvn clean package
 ```
 
 ##### * Use this file to deploy the app on:
-##### * **Local Apache Tomcat Server**, or **AWS Elastic Beanstalk (Java Environment)**
-
-> Don't forget to set the `MONGODB_URI` environment variable in the hosting platform.
+##### * **Local Apache Tomcat Server**, or **AWS Elastic Beanstalk (Java Environment).**
+##### * Don't forget to set the `MONGODB_URI` environment variable in the hosting platform.
 
 ---
 
@@ -213,11 +216,15 @@ Some screenshots of the system are shown below:
 |--------------|--------------|
 | <p align="center"><img src="https://github.com/user-attachments/assets/04074c05-fa11-4293-a0b4-94007f18d7c7" width="400"></p> | <p align="center"><img src="https://github.com/user-attachments/assets/8a0f1aa1-5d52-4fa4-9f70-88cf85d034aa" width="400"></p> |
 
+| Help Guide | Bill Details |
+|--------------|--------------|
+| <p align="center"><img src="https://github.com/user-attachments/assets/dbb333a4-10eb-4419-9d11-7feb232ec067" width="400"></p> | <p align="center"><img src="https://github.com/user-attachments/assets/036239f7-aeb9-4449-b75a-61714f693c00" width="400"></p> |
+
 ---
 
 ## 📘 About This Project
 
-This project was developed as part of an assignment for **Cardiff Metropolitan University**. It is a full-stack web application designed to manage core operations of a bookshop, including user management, item inventory, customer billing, and reporting. The system follows Object-Oriented Programming (OOP) principles and integrates modern development tools and technologies for a professional, scalable, and user-friendly experience.
+This project was developed as part of an assignment for **Cardiff Metropolitan University**. It is a full-stack web application designed to manage core operations of a bookshop, including user management, item inventory, customer billing, and reporting. The system follows Object-Oriented Programming (OOP) principles and integrates modern development tools and technologies.
 
 ### 👨‍💻 Created by: 
 **Ishan Madhusha**  
