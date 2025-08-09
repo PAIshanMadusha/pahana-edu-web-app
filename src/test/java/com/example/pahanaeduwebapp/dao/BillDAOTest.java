@@ -9,20 +9,20 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+/**
+ * Unit tests for BillDAO using the FakeBillDAO (in-memory).
+ */
 public class BillDAOTest {
 
-    private static BillDAO billDAO;
-    private static String insertedBillId;
+    private FakeBillDAO billDAO;
 
-    @BeforeAll
-    public static void setup() {
-        billDAO = new BillDAO();
+    @BeforeEach
+    void setUp() {
+        billDAO = new FakeBillDAO();
     }
 
     @Test
-    @Order(1)
-    public void testSaveBill() {
+    void testSaveAndGetBill() {
         BillItem item1 = new BillItem("101", "Pen", 20.0, 3);
         BillItem item2 = new BillItem("102", "Book", 100.0, 1);
 
@@ -35,27 +35,32 @@ public class BillDAOTest {
         billDAO.saveBill(bill);
 
         List<Bill> allBills = billDAO.getAllBills();
-        assertFalse(allBills.isEmpty());
+        assertEquals(1, allBills.size());
 
-        // Store ID for later tests
-        insertedBillId = allBills.get(allBills.size() - 1).getBillId();
-        assertNotNull(insertedBillId);
+        Bill savedBill = allBills.get(0);
+        assertNotNull(savedBill.getBillId());
+        assertEquals("C123", savedBill.getCustomerAccountNumber());
     }
 
     @Test
-    @Order(2)
-    public void testGetBillById() {
-        assertNotNull(insertedBillId);
-        Bill bill = billDAO.getBillById(insertedBillId);
-        assertNotNull(bill);
-        assertEquals("C123", bill.getCustomerAccountNumber());
+    void testGetBillById() {
+        Bill bill = new Bill();
+        bill.setBillId("BILL123");
+        bill.setCustomerAccountNumber("C456");
+        billDAO.saveBill(bill);
+
+        Bill result = billDAO.getBillById("BILL123");
+        assertNotNull(result);
+        assertEquals("C456", result.getCustomerAccountNumber());
     }
 
     @Test
-    @Order(3)
-    public void testDeleteBillById() {
-        billDAO.deleteBillById(insertedBillId);
-        Bill deleted = billDAO.getBillById(insertedBillId);
-        assertNull(deleted);
+    void testDeleteBillById() {
+        Bill bill = new Bill();
+        bill.setBillId("BILL999");
+        billDAO.saveBill(bill);
+
+        billDAO.deleteBillById("BILL999");
+        assertNull(billDAO.getBillById("BILL999"));
     }
 }

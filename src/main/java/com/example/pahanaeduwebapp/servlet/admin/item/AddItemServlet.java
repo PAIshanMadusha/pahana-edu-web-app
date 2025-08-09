@@ -2,12 +2,11 @@ package com.example.pahanaeduwebapp.servlet.admin.item;
 
 import com.example.pahanaeduwebapp.dao.ItemDAO;
 import com.example.pahanaeduwebapp.model.Item;
+import com.example.pahanaeduwebapp.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -17,39 +16,36 @@ import java.util.UUID;
  * Only accessible by admin via role-based JSP check.
  */
 @WebServlet("/admin/items/add")
-public class AddItemServlet extends HttpServlet {
+public class AddItemServlet extends BaseServlet {  // Extend BaseServlet
 
     private ItemDAO itemDAO;
 
     @Override
     public void init() {
-        itemDAO = new ItemDAO(); // 🔁 DAO = Data Access Layer
+        itemDAO = new ItemDAO();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        safeExecute(request, response, () -> {
+            String name = request.getParameter("name");
+            String category = request.getParameter("category");
+            String description = request.getParameter("description");
+            String imageUrl = request.getParameter("imageUrl");
 
-        // Step 1: Get form parameters
-        String name = request.getParameter("name");
-        String category = request.getParameter("category");
-        String description = request.getParameter("description");
-        String imageUrl = request.getParameter("imageUrl");
+            double price = Double.parseDouble(request.getParameter("price"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        double price = Double.parseDouble(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+            String itemId = UUID.randomUUID().toString();
 
-        // Step 2: Generate unique item ID
-        String itemId = UUID.randomUUID().toString();  // Unique ID generation
+            Item newItem = new Item(itemId, name, category, description, price, quantity, imageUrl);
 
-        // Step 3: Create Item object
-        Item newItem = new Item(itemId, name, category, description, price, quantity, imageUrl);
+            itemDAO.addItem(newItem);
 
-        // Step 4: Add to DB
-        itemDAO.addItem(newItem);
-
-        // Step 5: Set success message and redirect
-        request.getSession().setAttribute("successMessage", "Item added successfully.");
-        response.sendRedirect(request.getContextPath() + "/admin/items");
+            request.getSession().setAttribute("successMessage", "Item added successfully.");
+            response.sendRedirect(request.getContextPath() + "/admin/items");
+        });
     }
 }
+

@@ -2,6 +2,7 @@ package com.example.pahanaeduwebapp.servlet.staff.item;
 
 import com.example.pahanaeduwebapp.dao.ItemDAO;
 import com.example.pahanaeduwebapp.model.Item;
+import com.example.pahanaeduwebapp.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,26 +15,22 @@ import java.util.List;
  */
 
 @WebServlet("/staff/items")
-public class ViewItemServlet extends HttpServlet {
+public class ViewItemServlet extends BaseServlet {
 
     private ItemDAO itemDAO;
 
     @Override
     public void init() throws ServletException {
-        itemDAO = new ItemDAO(); // Initializes DAO (MongoDB connection happens inside)
+        itemDAO = new ItemDAO();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // Get all items from MongoDB
-        List<Item> itemList = itemDAO.getAllItems();
-
-        // Set as request attribute to access in JSP
-        request.setAttribute("items", itemList);
-
-        // Forward to the staff item view page
-        request.getRequestDispatcher("/staff/items/view.jsp").forward(request, response);
+        safeExecute(request, response, () -> {
+            List<Item> itemList = itemDAO.getAllItems();
+            request.setAttribute("items", itemList);
+            request.getRequestDispatcher("/staff/items/view.jsp").forward(request, response);
+        });
     }
 }

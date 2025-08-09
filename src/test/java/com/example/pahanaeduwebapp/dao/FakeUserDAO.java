@@ -8,8 +8,14 @@ public class FakeUserDAO extends UserDAO {
     private List<User> fakeDb = new ArrayList<>();
 
     @Override
-    public void addUser(User user) {
+    public boolean addUser(User user) {
+        boolean exists = fakeDb.stream()
+                .anyMatch(u -> u.getEmail().equalsIgnoreCase(user.getEmail()));
+        if (exists) {
+            return false;
+        }
         fakeDb.add(user);
+        return true;
     }
 
     @Override

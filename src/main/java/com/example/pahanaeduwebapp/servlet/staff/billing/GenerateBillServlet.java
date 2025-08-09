@@ -7,6 +7,7 @@ import com.example.pahanaeduwebapp.model.Bill;
 import com.example.pahanaeduwebapp.model.BillItem;
 import com.example.pahanaeduwebapp.model.Customer;
 import com.example.pahanaeduwebapp.model.Item;
+import com.example.pahanaeduwebapp.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +21,7 @@ import java.util.*;
  * OOP: Uses DAO abstraction to persist data.
  */
 @WebServlet("/staff/billing/generate")
-public class GenerateBillServlet extends HttpServlet {
+public class GenerateBillServlet extends BaseServlet { // extend BaseServlet
     private BillDAO billDAO;
     private ItemDAO itemDAO;
 
@@ -33,66 +34,58 @@ public class GenerateBillServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        safeExecute(request, response, () -> {
+            List<Item> itemList = itemDAO.getAllItems();
+            request.setAttribute("itemList", itemList);
 
-        // Get all items from DB to display in the form
-        List<Item> itemList = itemDAO.getAllItems();
+            CustomerDAO customerDAO = new CustomerDAO();
+            List<Customer> customerList = customerDAO.getAllCustomers();
+            request.setAttribute("customerList", customerList);
 
-        // Set items to request scope
-        request.setAttribute("itemList", itemList);
-
-        CustomerDAO customerDAO = new CustomerDAO();
-        List<Customer> customerList = customerDAO.getAllCustomers();
-        request.setAttribute("customerList", customerList);
-
-        // Forward to generate.jsp
-        request.getRequestDispatcher("/staff/billing/generate.jsp").forward(request, response);
+            request.getRequestDispatcher("/staff/billing/generate.jsp").forward(request, response);
+        });
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        safeExecute(request, response, () -> {
+            String customerAccountNumber = request.getParameter("accountNumber");
+            String[] itemIds = request.getParameterValues("itemId");
+            String[] quantities = request.getParameterValues("quantity");
 
-        String customerAccountNumber = request.getParameter("accountNumber");
-        String[] itemIds = request.getParameterValues("itemId");
-        String[] quantities = request.getParameterValues("quantity");
+            List<BillItem> billItems = new ArrayList<>();
 
-        List<BillItem> billItems = new ArrayList<>();
+            for (int i = 0; i < itemIds.length; i++) {
+                String itemId = itemIds[i];
+                int qty = Integer.parseInt(quantities[i]);
 
-        // Build BillItem list
-        for (int i = 0; i < itemIds.length; i++) {
-            String itemId = itemIds[i];
-            int qty = Integer.parseInt(quantities[i]);
-
-            Item dbItem = itemDAO.getItemById(itemId);
-            if (dbItem != null && qty > 0) {
-                BillItem item = new BillItem(
-                        dbItem.getItemId(),
-                        dbItem.getName(),
-                        dbItem.getPrice(),
-                        qty
-                );
-                billItems.add(item);
+                Item dbItem = itemDAO.getItemById(itemId);
+                if (dbItem != null && qty > 0) {
+                    billItems.add(new BillItem(
+                            dbItem.getItemId(),
+                            dbItem.getName(),
+                            dbItem.getPrice(),
+                            qty
+                    ));
+                }
             }
-        }
 
-        // Create Bill
-        String billId = UUID.randomUUID().toString().substring(0, 8);
-        String createdAt = LocalDateTime.now().toString();
-        Bill bill = new Bill(billId, customerAccountNumber, billItems, 0.0, createdAt);
-        double roundedTotal = Math.round(bill.calculateTotal() * 100.0) / 100.0;
-        bill.setTotalAmount(roundedTotal);
+            String billId = UUID.randomUUID().toString().substring(0, 8);
+            String createdAt = LocalDateTime.now().toString();
+            Bill bill = new Bill(billId, customerAccountNumber, billItems, 0.0, createdAt);
+            double roundedTotal = Math.round(bill.calculateTotal() * 100.0) / 100.0;
+            bill.setTotalAmount(roundedTotal);
 
-        // Save to DB
-        billDAO.saveBill(bill);
+            billDAO.saveBill(bill);
 
-        // Fetch customer email
-        CustomerDAO customerDAO = new CustomerDAO();
-        Customer customer = customerDAO.getCustomerByAccountNumber(customerAccountNumber);
-        String customerEmail = (customer != null) ? customer.getEmail() : "N/A";
+            CustomerDAO customerDAO = new CustomerDAO();
+            Customer customer = customerDAO.getCustomerByAccountNumber(customerAccountNumber);
+            String customerEmail = (customer != null) ? customer.getEmail() : "N/A";
 
-        // Redirect to print page (optional)
-        request.setAttribute("bill", bill);
-        request.setAttribute("customerEmail", customerEmail);
-        request.getRequestDispatcher("/staff/billing/print.jsp").forward(request, response);
+            request.setAttribute("bill", bill);
+            request.setAttribute("customerEmail", customerEmail);
+            request.getRequestDispatcher("/staff/billing/print.jsp").forward(request, response);
+        });
     }
 }

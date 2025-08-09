@@ -30,12 +30,15 @@ public class MongoDBConnection {
             MongoDatabase db = mongoClient.getDatabase(DB_NAME);
             db.listCollectionNames().first();  // Forces socket connection
 
-            System.out.println("✅ MongoDB Connected Successfully to database: " + DB_NAME);
+            System.out.println("✅ MongoDB Connected Successfully to Database: " + DB_NAME);
         } catch (MongoException e) {
             System.err.println("❌ MongoDB Connection Failed: " + e.getMessage());
         }
     }
     public static MongoDatabase getDatabase() {
+        if (mongoClient == null) {
+            throw new IllegalStateException("MongoDB Client is not Initialized. Check Your Connection Settings!");
+        }
         return mongoClient.getDatabase(DB_NAME);
     }
 }

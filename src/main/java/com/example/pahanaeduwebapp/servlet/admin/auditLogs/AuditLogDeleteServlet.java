@@ -2,6 +2,7 @@ package com.example.pahanaeduwebapp.servlet.admin.auditLogs;
 
 import com.example.pahanaeduwebapp.dao.AuditLogDAO;
 import com.example.pahanaeduwebapp.repository.AuditLogRepository;
+import com.example.pahanaeduwebapp.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,23 +10,24 @@ import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/admin/auditLogs/delete")
-public class AuditLogDeleteServlet extends HttpServlet {
+public class AuditLogDeleteServlet extends BaseServlet {
 
-    final private AuditLogRepository auditLogRepository = new AuditLogDAO();
+    private final AuditLogRepository auditLogRepository = new AuditLogDAO();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        safeExecute(req, resp, () -> {
+            String logId = req.getParameter("logId");
 
-        String logId = req.getParameter("logId");
+            if (logId != null && !logId.isEmpty()) {
+                auditLogRepository.deleteLogById(logId);
+                req.getSession().setAttribute("successMessage", "Log deleted successfully.");
+            } else {
+                req.getSession().setAttribute("errorMessage", "Invalid log ID.");
+            }
 
-        if (logId != null && !logId.isEmpty()) {
-            auditLogRepository.deleteLogById(logId);
-            req.getSession().setAttribute("successMessage", "Log deleted successfully.");
-        } else {
-            req.getSession().setAttribute("errorMessage", "Invalid log ID.");
-        }
-
-        resp.sendRedirect(req.getContextPath() + "/admin/auditLogs");
+            resp.sendRedirect(req.getContextPath() + "/admin/auditLogs");
+        });
     }
 }

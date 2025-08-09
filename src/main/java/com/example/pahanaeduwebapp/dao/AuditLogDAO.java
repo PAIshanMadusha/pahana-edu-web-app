@@ -15,50 +15,7 @@ import java.util.List;
 /**
  * MongoDB implementation of AuditLogRepository.
  */
-public class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-AuditLogDAO implements AuditLogRepository {
+public class AuditLogDAO implements AuditLogRepository {
 
     private final MongoCollection<Document> auditCollection;
 

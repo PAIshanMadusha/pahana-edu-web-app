@@ -26,7 +26,7 @@ public class ReportDAO implements ReportRepository {
     }
 
     @Override
-    public List<Bill> getBillsByDateRange(String fromDate, String toDate) {
+        public List<Bill> getBillsByDateRange(String fromDate, String toDate) {
         List<Bill> bills = new ArrayList<>();
         LocalDate from = LocalDate.parse(fromDate);
         LocalDate to = LocalDate.parse(toDate);

@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
  * Polymorphism: Uses User reference to handle both Admin and Staff objects.
  */
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends BaseServlet {
 
     private final UserDAO userDAO = new UserDAO();
 
@@ -27,41 +27,41 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        DatabaseInitializer.ensureAdminExists();
+        safeExecute(request, response, () -> {
+            DatabaseInitializer.ensureAdminExists();
 
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
 
-        User user = userDAO.validateLogin(email, password); // Polymorphic return
+            User user = userDAO.validateLogin(email, password);
 
-        if (user != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user); // Holds Admin or Staff
+            if (user != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
 
-            AuditLog log = new AuditLog();
-            log.setUserEmail(user.getEmail());
-            log.setAction("Login");
-            log.setDetails("User logged in");
-            log.setTimestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                AuditLog log = new AuditLog();
+                log.setUserEmail(user.getEmail());
+                log.setAction("Login");
+                log.setDetails("User logged in");
+                log.setTimestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
-            AuditLogRepository auditDAO = new AuditLogDAO();
-            auditDAO.logAction(log);
+                AuditLogRepository auditDAO = new AuditLogDAO();
+                auditDAO.logAction(log);
 
-            // Use polymorphism to redirect by role
-            String role = user.getRole();
+                String role = user.getRole();
 
-            if ("admin".equalsIgnoreCase(role)) {
-                response.sendRedirect("admin/dashboard.jsp");
-            } else if ("staff".equalsIgnoreCase(role)) {
-                response.sendRedirect("staff/dashboard.jsp");
+                if ("admin".equalsIgnoreCase(role)) {
+                    response.sendRedirect("admin/dashboard.jsp");
+                } else if ("staff".equalsIgnoreCase(role)) {
+                    response.sendRedirect("staff/dashboard.jsp");
+                } else {
+                    request.setAttribute("error", "Unauthorized role.");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
             } else {
-                request.setAttribute("error", "Unauthorized role.");
+                request.setAttribute("error", "Invalid email or password!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-
-        } else {
-            request.setAttribute("error", "Invalid email or password!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
+        });
     }
 }

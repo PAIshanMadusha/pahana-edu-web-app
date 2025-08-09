@@ -17,7 +17,10 @@ public class UserDAOTest {
     @Test
     void testAddAndFindUser() {
         User user = new Admin("test@example.com", "pass123", "Test Admin", "0711234567");
-        userDAO.addUser(user);
+
+        // Capture the return value to verify the add was successful
+        boolean added = userDAO.addUser(user);
+        assertTrue(added, "User should be added successfully");
 
         User result = userDAO.findUserByEmail("test@example.com");
 

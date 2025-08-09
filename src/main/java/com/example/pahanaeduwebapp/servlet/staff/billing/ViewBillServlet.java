@@ -4,6 +4,7 @@ import com.example.pahanaeduwebapp.dao.BillDAO;
 import com.example.pahanaeduwebapp.model.Bill;
 import com.example.pahanaeduwebapp.dao.CustomerDAO;
 import com.example.pahanaeduwebapp.model.Customer;
+import com.example.pahanaeduwebapp.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,7 @@ import java.io.IOException;
  * Loads a previously generated bill for viewing.
  */
 @WebServlet("/staff/billing/view")
-public class ViewBillServlet extends HttpServlet {
+public class ViewBillServlet extends BaseServlet {
 
     private BillDAO billDAO;
     private CustomerDAO customerDAO;
@@ -29,26 +30,27 @@ public class ViewBillServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String billId = request.getParameter("billId");
+        safeExecute(request, response, () -> {
+            String billId = request.getParameter("billId");
 
-        if (billId == null || billId.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/staff/billing/history");
-            return;
-        }
+            if (billId == null || billId.isEmpty()) {
+                response.sendRedirect(request.getContextPath() + "/staff/billing/history");
+                return;
+            }
 
-        Bill bill = billDAO.getBillById(billId);
-        if (bill == null) {
-            request.setAttribute("error", "Bill not found.");
-            request.getRequestDispatcher("/staff/billing/history.jsp").forward(request, response);
-            return;
-        }
+            Bill bill = billDAO.getBillById(billId);
+            if (bill == null) {
+                request.setAttribute("error", "Bill not found.");
+                request.getRequestDispatcher("/staff/billing/history.jsp").forward(request, response);
+                return;
+            }
 
-        //Fetch customer email using customerAccountNumber from bill
-        Customer customer = customerDAO.getCustomerByAccountNumber(bill.getCustomerAccountNumber());
-        String customerEmail = (customer != null) ? customer.getEmail() : "N/A";
+            Customer customer = customerDAO.getCustomerByAccountNumber(bill.getCustomerAccountNumber());
+            String customerEmail = (customer != null) ? customer.getEmail() : "N/A";
 
-        request.setAttribute("bill", bill);
-        request.setAttribute("customerEmail", customerEmail);
-        request.getRequestDispatcher("/staff/billing/print.jsp").forward(request, response);
+            request.setAttribute("bill", bill);
+            request.setAttribute("customerEmail", customerEmail);
+            request.getRequestDispatcher("/staff/billing/print.jsp").forward(request, response);
+        });
     }
 }

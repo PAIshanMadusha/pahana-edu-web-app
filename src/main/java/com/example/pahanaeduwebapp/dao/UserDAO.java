@@ -50,14 +50,21 @@ public class UserDAO {
         }
     }
 
-    public void addUser(User user) {
+    public boolean addUser(User user) {
+        // Check if email already exists
+        Document existing = userCollection.find(new Document("email", user.getEmail())).first();
+        if (existing != null) {
+            return false; // User with email already exists
+        }
+
         Document doc = new Document("email", user.getEmail())
                 .append("password", user.getPassword())
-                .append("role", user.getRole()) // Works through polymorphism
+                .append("role", user.getRole())
                 .append("fullName", user.getFullName())
                 .append("phone", user.getPhone());
 
         userCollection.insertOne(doc);
+        return true;
     }
 
     public List<User> getAllUsers() {
